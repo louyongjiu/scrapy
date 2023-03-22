@@ -12,3 +12,5 @@ class GitHubItem(scrapy.Item):
     star = scrapy.Field()
     update_time = scrapy.Field()
     description = scrapy.Field()
+    repository = scrapy.Field()
+    url = scrapy.Field()
