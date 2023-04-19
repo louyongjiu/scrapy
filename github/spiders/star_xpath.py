@@ -10,12 +10,11 @@ class StarXpathSpider(scrapy.Spider):
 
     def parse(self, response):
         if not response.text:
-            new_request_or_none = get_retry_request(
-            response.request,
-            spider=self,
-            reason='empty',
+            yield get_retry_request(
+                response.request,
+                spider=self,
+                reason='empty',
             )
-            yield new_request_or_none
         for node in response.xpath('/html/body/div[1]/div/main/div/div[3]/div/ul/li'):
             item = GitHubItem() 
             item["repository"] = str.strip(node.xpath('./div[2]/div[1]/div[1]/a/text()').get())
